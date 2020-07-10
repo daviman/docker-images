@@ -58,6 +58,8 @@ COPY --from=build /usr/share/postgresql/$PG_MAJOR/extension/decoderbufs.control 
 # Copy the custom configuration which will be passed down to the server (using a .sample file is the preferred way of doing it by
 # the base Docker image)
 COPY postgresql.conf.sample /usr/share/postgresql/postgresql.conf.sample
-COPY openshift-custom-postgresql.conf /var/lib/pgsql/openshift-custom-postgresql.conf
+
+COPY openshift-custom-postgresql.conf /usr/share/container-scripts/postgresql/openshift-custom-postgresql.conf.template
+
 # Copy the script which will initialize the replication permissions
 COPY /docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
